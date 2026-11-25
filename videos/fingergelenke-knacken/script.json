@@ -1,0 +1,47 @@
+{
+  "title": "Warum knacken Fingergelenke?",
+  "voice": "de_DE-thorsten-medium",
+  "speed": 1.05,
+  "scenes": [
+    {
+      "text": "Warum knackt es eigentlich, wenn du deine Finger knackst?",
+      "image": "s01.svg",
+      "motion": "zoom_in"
+    },
+    {
+      "text": "Zwischen deinen Fingerknochen sitzt eine kleine Kapsel, gefüllt mit Gelenkflüssigkeit.",
+      "image": "s02.svg",
+      "motion": "zoom_in"
+    },
+    {
+      "text": "In dieser Flüssigkeit sind Gase gelöst, ähnlich wie Kohlensäure in einer Flasche.",
+      "image": "s03.svg",
+      "motion": "pan_up"
+    },
+    {
+      "text": "Wenn du am Finger ziehst, wird der Spalt im Gelenk plötzlich größer.",
+      "image": "s04.svg",
+      "motion": "zoom_out"
+    },
+    {
+      "text": "Der Druck sinkt, und in Sekundenbruchteilen entsteht eine Gasblase. Das ist das Knacken.",
+      "image": "s05.svg",
+      "motion": "zoom_in"
+    },
+    {
+      "text": "Danach braucht das Gelenk etwa zwanzig Minuten, bis es wieder knacken kann.",
+      "image": "s06.svg",
+      "motion": "pan_down"
+    },
+    {
+      "text": "Und Arthrose? Ein Arzt knackte sechzig Jahre lang nur die Finger seiner linken Hand.",
+      "image": "s07.svg",
+      "motion": "pan_right"
+    },
+    {
+      "text": "Am Ende waren beide Hände gleich gesund. Knacken ist also harmlos, solange es nicht wehtut.",
+      "image": "s08.svg",
+      "motion": "zoom_in"
+    }
+  ]
+}
