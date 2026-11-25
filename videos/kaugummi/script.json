@@ -1,0 +1,13 @@
+{
+  "title": "Was passiert, wenn du einen Kaugummi verschluckst?",
+  "voice": "de_DE-thorsten-medium",
+  "speed": 1.05,
+  "scenes": [
+    {"text": "Was passiert eigentlich, wenn du einen Kaugummi verschluckst?", "image": "s01.svg", "motion": "zoom_in"},
+    {"text": "Er rutscht durch die Speiseröhre, genau wie jedes andere Essen.", "image": "s02.svg", "motion": "pan_down"},
+    {"text": "Im Magen greift ihn die Magensäure an. Zucker und Aromen lösen sich auf.", "image": "s03.svg", "motion": "zoom_in"},
+    {"text": "Aber die Kaugummibasis ist ein Gummi, den dein Körper nicht verdauen kann.", "image": "s04.svg", "motion": "zoom_out"},
+    {"text": "Also wandert er einfach weiter durch den Darm, Stück für Stück.", "image": "s05.svg", "motion": "pan_up"},
+    {"text": "Nach ein bis drei Tagen ist er wieder draußen. Sieben Jahre im Magen? Nur ein Mythos.", "image": "s06.svg", "motion": "zoom_in"}
+  ]
+}

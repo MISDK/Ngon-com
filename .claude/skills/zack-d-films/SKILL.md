@@ -1,82 +1,108 @@
 ---
 name: zack-d-films
-description: Plant einen kurzen 3D-Erklär-Short (30–60 Sek., Hochformat) im Stil "Was passiert, wenn …" / "So funktioniert …" – mit Hook, Sprechertext, Szenenliste, Prompts für Bild- und Video-KI, Titel, Beschreibung und Tags. Verwenden, wenn der Nutzer /zack-d-films aufruft oder einen solchen Short planen will.
+description: Macht aus einem Thema einen fertigen animierten Erklär-Short (MP4, 1080x1920, 30–60 Sek.) im Stil "Was passiert, wenn …" – mit deutscher Sprecherstimme, gezeichneten Szenen, Zoom-Animation und Untertiteln, plus Titel, Beschreibung und Tags. Verwenden, wenn der Nutzer /zack-d-films aufruft oder ein Video/Short zu einem Thema haben will.
 argument-hint: "[Thema, z. B. 'Was passiert, wenn du einen Kaugummi verschluckst']"
 ---
 
-# 3D-Erklär-Short planen
+# Fertigen Erklär-Short erstellen
 
-Du planst einen kurzen, animierten Erklär-Short für YouTube Shorts, TikTok und Reels.
-Das Format: ein überraschendes Alltags- oder Körper-Thema, erklärt in 30–60 Sekunden mit
-realistischer 3D-Animation, einer ruhigen Erzählstimme und einem starken Hook.
+Ziel: Aus dem Thema `$ARGUMENTS` entsteht ein fertiges MP4, das der Nutzer direkt hochladen kann.
+Nicht nachfragen, sondern durchziehen. Nur wenn kein Thema angegeben ist: 10 Themen vorschlagen
+(je ein Satz) und fragen, welches.
 
-Thema: `$ARGUMENTS`
-
-Ist kein Thema angegeben, schlage zuerst 10 Themen vor (Liste mit je einem Satz, warum es
-neugierig macht) und frag, welches genommen werden soll. Danach weiter mit Schritt 1.
+Das Format: überraschendes Alltags- oder Körper-Thema, ruhige Erzählstimme, starker Hook in
+den ersten 2 Sekunden, eine Szene pro Satz, große Untertitel.
 
 ## Regeln
 
 - **Eigene Inhalte.** Nur das Format ist das Vorbild. Keine Videos, Skripte, Titel, Figuren
-  oder Thumbnails bestehender Kanäle kopieren oder nachbauen. Keinen fremden Kanalnamen
-  nennen und kein fremdes Logo verwenden.
-- **Fakten stimmen.** Nur belegbare Aussagen. Wenn Websuche verfügbar ist, prüfe die
-  Kernfakten und nenne 2–3 Quellen am Ende. Unsichere Punkte klar markieren.
-- **Keine Schockeffekte um ihrer selbst willen.** Medizinische Themen sachlich und ohne
-  blutige Details beschreiben (YouTube-Richtlinien, Altersfreigabe).
-- **Sprache:** Deutsch, du-Form, kurze Sätze, die man gut vorlesen kann.
+  oder Thumbnails bestehender Kanäle kopieren. Keinen fremden Kanalnamen oder Logo verwenden.
+- **Fakten stimmen.** Kernaussagen mit Websuche prüfen, wenn verfügbar. 2–3 Quellen notieren.
+- **Sachlich bei Körperthemen**, keine blutigen Details.
+- **Sprache:** Deutsch, du-Form, kurze Sätze, gut vorlesbar. Zahlen ausschreiben, wenn die
+  Stimme sie sonst falsch liest ("ein bis drei Tage" statt "1–3 Tage"). Keine Abkürzungen.
 
-## Ablauf
+## Schritt 1: Projekt anlegen
 
-### 1. Hook (0–2 Sek.)
-Drei Varianten, jeweils max. 10 Wörter. Der Hook stellt eine Frage oder Behauptung, die
-man beantwortet sehen will ("Das passiert in deinem Magen, wenn …"). Empfiehl eine.
+Kurzen Ordnernamen aus dem Thema bilden (Kleinbuchstaben, Bindestriche, keine Umlaute),
+z. B. `videos/kaugummi-verschlucken/`. Beispielprojekt zum Abschauen: `videos/kaugummi/`.
 
-### 2. Sprechertext
-Komplettes Skript zum Vorlesen, 80–140 Wörter (≈ 30–60 Sek.).
-- Aufbau: Hook → Schritt für Schritt erklären → überraschende Wendung → kurzer Schluss,
-  der zum erneuten Anschauen einlädt (Loop: der letzte Satz führt zurück zum Anfang).
-- Gib die geschätzte Länge in Sekunden an.
+## Schritt 2: Skript schreiben → `script.json`
 
-### 3. Szenenliste
-Tabelle mit 6–10 Szenen:
+- 6–10 Szenen, zusammen 80–140 Wörter (≈ 30–60 Sek.).
+- Szene 1 = Hook (Frage oder Behauptung, max. 10 Wörter).
+- Danach Schritt für Schritt erklären, eine überraschende Wendung, kurzer Schluss.
+- Pro Szene 1–2 Sätze.
 
-| Nr. | Zeit | Sprechertext | Was man sieht | Kamera |
-| --- | --- | --- | --- | --- |
+```json
+{
+  "title": "Was passiert, wenn du einen Kaugummi verschluckst?",
+  "voice": "de_DE-thorsten-medium",
+  "speed": 1.05,
+  "scenes": [
+    {"text": "Sprechertext", "image": "s01.svg", "motion": "zoom_in"}
+  ]
+}
+```
 
-"Was man sieht" konkret beschreiben (Objekt, Material, Licht, Bewegung).
-Kamera z. B.: Nahaufnahme, Fahrt in den Körper hinein, Querschnitt, Zeitlupe.
+`motion` abwechseln: `zoom_in`, `zoom_out`, `pan_up`, `pan_down`, `pan_left`, `pan_right`, `still`.
 
-### 4. KI-Prompts pro Szene
-Für jede Szene einen englischen Prompt, der in Bild- oder Video-KIs funktioniert.
-Einheitlicher Stil-Zusatz an jedem Prompt, damit alle Szenen gleich aussehen:
+## Schritt 3: Szenenbilder zeichnen → `s01.svg`, `s02.svg`, …
 
-`photorealistic 3D render, cinematic lighting, shallow depth of field, clean neutral background, vertical 9:16, 4k, smooth camera motion`
+Für jede Szene ein eigenes SVG, `width="1080" height="1920" viewBox="0 0 1080 1920"`.
+Stil für einen einheitlichen, plastischen Look:
 
-Bei Video-KI zusätzlich Bewegung und Dauer (z. B. "slow push-in, 4 seconds").
+- Dunkler Hintergrund mit radialem Verlauf (z. B. `#3a1f2b` → `#0d0609`).
+- Objekte mit `radialGradient` (helles Glanzlicht oben links → kräftige Farbe → dunkler Rand),
+  damit sie dreidimensional wirken. Kleine weiße, halbtransparente Ellipse als Glanzpunkt.
+- Weiches Leuchten hinter dem Hauptobjekt (`feGaussianBlur`).
+- Das Hauptmotiv in die **obere Bildhälfte bis y ≈ 1150**. Der Bereich y 1200–1600 gehört den
+  Untertiteln, dort nur ruhiger Hintergrund.
+- Kein Text in den Bildern (die Untertitel kommen automatisch).
+- Das wiederkehrende Hauptobjekt (z. B. der Kaugummi) sieht in allen Szenen gleich aus.
+- Bewegung/Richtung mit Pfeilen, Bläschen oder Bewegungslinien andeuten.
+- Nur SVG-Grundformen, Pfade, Verläufe und Filter. Keine externen Bilder oder Schriften.
 
-### 5. Ton
-- Musik: Stimmung + Tempo (z. B. "ruhig, mysteriös, 90 BPM") – nur lizenzfreie Musik
-  (YouTube Audio Library).
-- 2–4 Soundeffekte mit Zeitpunkt.
-- Stimme: Hinweis, wie gesprochen werden soll (ruhig, leicht flüsternd, Pausen wo).
+Lizenzfreie eigene Fotos/Bilder (PNG/JPG) im Projektordner gehen auch, wenn der Nutzer sie liefert.
 
-### 6. Veröffentlichung
-- 5 Titel (max. 60 Zeichen, auf Deutsch, neugierig machend, kein Clickbait, das das Video
-  nicht einlöst).
-- Beschreibung (2–3 Sätze + Quellen).
-- 10–15 Tags / Hashtags, darunter `#shorts`.
-- Hinweis: Beim Upload "veränderte oder synthetische Inhalte" angeben, wenn die Animation
-  realistisch wirkt.
+## Schritt 4: Video rendern
 
-### 7. Umsetzung (kurz)
-Zwei Wege in je 2–3 Sätzen nennen:
-- **Kostenlos:** Blender (3D-Modelle, z. B. von Sketchfab mit passender Lizenz) + DaVinci
-  Resolve oder CapCut für Schnitt und Untertitel.
-- **Mit KI-Video:** Szenen-Prompts aus Schritt 4 in einen KI-Videogenerator, Stimme mit
-  eigener Aufnahme oder Piper, Schnitt in CapCut.
+Abhängigkeiten einmalig installieren und rendern (vom Repo-Wurzelverzeichnis aus):
 
-## Ausgabe
+```bash
+pip install -q -r tools/shorts/requirements.txt
+python3 tools/shorts/make_short.py videos/<projekt>
+```
 
-Alles in einer Antwort, mit Überschriften für die Schritte 1–7. Am Ende eine Zeile:
-"Soll ich etwas anpassen (Hook, Länge, Stil) oder das nächste Thema planen?"
+Beim ersten Lauf wird die deutsche Stimme (~60 MB) von huggingface.co geladen.
+Ergebnis: `videos/<projekt>/<projekt>.mp4`.
+
+Fehler beheben und neu rendern, bis es durchläuft. Wenn huggingface.co nicht erreichbar ist,
+dem Nutzer sagen, dass der Netzwerkzugang dafür fehlt.
+
+## Schritt 5: Ergebnis prüfen
+
+Drei Standbilder (Anfang, Mitte, Ende) nebeneinander ziehen und mit dem Read-Tool anschauen:
+
+```bash
+ffprobe -v error -show_entries format=duration -of csv=p=0 <mp4>
+for t in 1.5 <mitte> <ende>; do ffmpeg -loglevel error -y -ss $t -i <mp4> -frames:v 1 -vf scale=360:-1 <scratch>/f$t.png; done
+ffmpeg -loglevel error -y -i <scratch>/f1.5.png -i <scratch>/f<mitte>.png -i <scratch>/f<ende>.png -filter_complex hstack=3 <scratch>/check.png
+```
+
+Prüfen: Motiv gut erkennbar, Untertitel lesbar und nicht über dem Hauptmotiv, Länge
+30–60 Sek. (`ffprobe`). Bei Problemen SVG oder Text anpassen und neu rendern.
+
+## Schritt 6: Übergeben
+
+1. Das MP4 mit dem Datei-Senden-Tool an den Nutzer schicken (`SendUserFile`, falls vorhanden),
+   damit er es herunterladen kann.
+2. `videos/<projekt>/` (script.json + SVGs, ohne MP4) committen und pushen.
+3. In der Antwort kurz liefern:
+   - 3 Titelvorschläge (max. 60 Zeichen)
+   - Beschreibung (2–3 Sätze + Quellen)
+   - 10–15 Hashtags inkl. `#shorts`
+   - Hinweis: Die Stimme ist KI-generiert; das in der Beschreibung kurz erwähnen. Wirkt ein
+     Bild realistisch (z. B. eingefügte Fotos), beim Upload "Veränderte oder synthetische
+     Inhalte" angeben.
+4. Letzte Zeile: "Soll ich etwas ändern (Text, Bilder, Tempo) oder das nächste Video machen?"
